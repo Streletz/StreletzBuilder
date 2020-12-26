@@ -1,0 +1,76 @@
+﻿using StreletzBuilder.Settings;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+
+namespace StreletzBuilder
+{
+    public partial class SettingsForm : Form
+    {
+        private bool closeByBtn = false;
+        public SettingsForm()
+        {
+            InitializeComponent();
+        }
+
+        private void buttonRepositorySelection_Click(object sender, EventArgs e)
+        {
+            if (repositoryFolderSelectionDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBoxRepository.Text = repositoryFolderSelectionDialog.SelectedPath;
+            }
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            SettingsManager.GetInstance().Settings.GitPath = textBoxGit.Text;
+            SettingsManager.GetInstance().Settings.RepositoryPath = textBoxRepository.Text;
+            SettingsManager.GetInstance().Settings.SolutionFilePath = textBoxSln.Text;
+            closeByBtn = true;
+        }
+
+        private void buttonGit_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogGit.ShowDialog() == DialogResult.OK)
+            {
+                textBoxGit.Text = openFileDialogGit.FileName;
+            }
+        }
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
+            textBoxGit.Text = SettingsManager.GetInstance().Settings.GitPath;
+            textBoxRepository.Text = SettingsManager.GetInstance().Settings.RepositoryPath;
+            textBoxSln.Text = SettingsManager.GetInstance().Settings.SolutionFilePath;
+        }
+
+        private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (closeByBtn)
+            {
+                e.Cancel = !SettingsManager.GetInstance().Ready;
+                if (!e.Cancel)
+                {
+                    SettingsManager.GetInstance().Save();
+                }
+                else
+                {
+                    MessageBox.Show("Задайте все настройки или нажмите \"Отмена\"!");
+                }
+                closeByBtn = false;
+            }
+        }
+
+        private void buttonSln_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogSln.ShowDialog() == DialogResult.OK)
+            {
+                textBoxSln.Text = openFileDialogSln.FileName;
+            }
+        }
+    }
+}
