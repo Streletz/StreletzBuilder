@@ -127,7 +127,7 @@ namespace StreletzBuilder
             // 
             // buttonGit
             // 
-            this.buttonGit.Location = new System.Drawing.Point(694, 30);
+            this.buttonGit.Location = new System.Drawing.Point(694, 31);
             this.buttonGit.Name = "buttonGit";
             this.buttonGit.Size = new System.Drawing.Size(94, 29);
             this.buttonGit.TabIndex = 8;
@@ -138,7 +138,7 @@ namespace StreletzBuilder
             // buttonRepositorySelection
             // 
             this.buttonRepositorySelection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRepositorySelection.Location = new System.Drawing.Point(694, 83);
+            this.buttonRepositorySelection.Location = new System.Drawing.Point(694, 84);
             this.buttonRepositorySelection.Name = "buttonRepositorySelection";
             this.buttonRepositorySelection.Size = new System.Drawing.Size(94, 29);
             this.buttonRepositorySelection.TabIndex = 9;
@@ -148,7 +148,7 @@ namespace StreletzBuilder
             // 
             // buttonSln
             // 
-            this.buttonSln.Location = new System.Drawing.Point(694, 136);
+            this.buttonSln.Location = new System.Drawing.Point(694, 137);
             this.buttonSln.Name = "buttonSln";
             this.buttonSln.Size = new System.Drawing.Size(94, 29);
             this.buttonSln.TabIndex = 10;
