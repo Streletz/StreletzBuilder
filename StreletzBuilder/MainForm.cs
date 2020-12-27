@@ -85,7 +85,7 @@ namespace StreletzBuilder
             statusLabel.Text = "Сборка...";
             NetCoreBuilder builder = new NetCoreBuilder()
             {
-                SolutionFilePath = SettingsManager.GetInstance().Settings.SolutionFilePath //@"C:\Users\Egor\source\repos\StreletzNoticeBoard\StreletzNoticeBoard.sln"
+                SolutionFilePath = SettingsManager.GetInstance().Settings.SolutionFilePath 
             };
             textBoxBuild.Text = builder.Build();
             statusLabel.Text = "Сборка выполнена!";
@@ -96,8 +96,8 @@ namespace StreletzBuilder
             statusLabel.Text = "Обновление репозитория...";
             Git git = new Git()
             {
-                GitPath = SettingsManager.GetInstance().Settings.GitPath, //@"C:\Program Files\Git\bin\git.exe",
-                RepositoryPath = SettingsManager.GetInstance().Settings.RepositoryPath //@"C:\Users\Egor\source\repos\StreletzNoticeBoard"
+                GitPath = SettingsManager.GetInstance().Settings.GitPath, 
+                RepositoryPath = SettingsManager.GetInstance().Settings.RepositoryPath 
             };
             textBoxGit.Text = git.Pull();
             statusLabel.Text = "Репозиторий обновлён!";

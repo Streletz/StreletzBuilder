@@ -41,46 +41,48 @@ namespace StreletzBuilder
             // 
             this.labelProgramName.AutoSize = true;
             this.labelProgramName.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelProgramName.Location = new System.Drawing.Point(12, 9);
+            this.labelProgramName.Location = new System.Drawing.Point(14, 12);
             this.labelProgramName.Name = "labelProgramName";
-            this.labelProgramName.Size = new System.Drawing.Size(166, 30);
+            this.labelProgramName.Size = new System.Drawing.Size(207, 37);
             this.labelProgramName.TabIndex = 0;
             this.labelProgramName.Text = "StreletzBuilder";
             // 
             // labelAuthor
             // 
             this.labelAuthor.AutoSize = true;
-            this.labelAuthor.Location = new System.Drawing.Point(12, 117);
+            this.labelAuthor.Location = new System.Drawing.Point(14, 156);
             this.labelAuthor.Name = "labelAuthor";
-            this.labelAuthor.Size = new System.Drawing.Size(102, 15);
+            this.labelAuthor.Size = new System.Drawing.Size(127, 20);
             this.labelAuthor.TabIndex = 1;
             this.labelAuthor.Text = "© Стрелец Coder";
             // 
             // linkLabelSite
             // 
             this.linkLabelSite.AutoSize = true;
-            this.linkLabelSite.Location = new System.Drawing.Point(12, 132);
+            this.linkLabelSite.Location = new System.Drawing.Point(14, 176);
             this.linkLabelSite.Name = "linkLabelSite";
-            this.linkLabelSite.Size = new System.Drawing.Size(133, 15);
+            this.linkLabelSite.Size = new System.Drawing.Size(165, 20);
             this.linkLabelSite.TabIndex = 2;
             this.linkLabelSite.TabStop = true;
             this.linkLabelSite.Text = "https://streletzcoder.ru/";
+            this.linkLabelSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSite_LinkClicked);
             // 
             // labelYears
             // 
             this.labelYears.AutoSize = true;
-            this.labelYears.Location = new System.Drawing.Point(12, 147);
+            this.labelYears.Location = new System.Drawing.Point(14, 196);
             this.labelYears.Name = "labelYears";
-            this.labelYears.Size = new System.Drawing.Size(31, 15);
+            this.labelYears.Size = new System.Drawing.Size(41, 20);
             this.labelYears.TabIndex = 3;
             this.labelYears.Text = "2021";
             // 
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(70, 175);
+            this.button1.Location = new System.Drawing.Point(80, 233);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(86, 31);
             this.button1.TabIndex = 4;
             this.button1.Text = "Ok";
             this.button1.UseVisualStyleBackColor = true;
@@ -88,17 +90,17 @@ namespace StreletzBuilder
             // labelVersion
             // 
             this.labelVersion.AutoSize = true;
-            this.labelVersion.Location = new System.Drawing.Point(13, 43);
+            this.labelVersion.Location = new System.Drawing.Point(15, 57);
             this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(46, 15);
+            this.labelVersion.Size = new System.Drawing.Size(59, 20);
             this.labelVersion.TabIndex = 5;
             this.labelVersion.Text = "Версия";
             // 
             // AboutForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(209, 210);
+            this.ClientSize = new System.Drawing.Size(239, 280);
             this.Controls.Add(this.labelVersion);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.labelYears);
@@ -106,6 +108,7 @@ namespace StreletzBuilder
             this.Controls.Add(this.labelAuthor);
             this.Controls.Add(this.labelProgramName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutForm";
