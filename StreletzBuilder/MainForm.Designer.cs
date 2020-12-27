@@ -59,6 +59,7 @@ namespace StreletzBuilder
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonUpdateBuild = new System.Windows.Forms.Button();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.mainMenu.SuspendLayout();
             this.contextMenuStripFile.SuspendLayout();
             this.contextMenuStripSaveOutput.SuspendLayout();
@@ -353,6 +354,11 @@ namespace StreletzBuilder
             this.exitMenuItem.Size = new System.Drawing.Size(109, 22);
             this.exitMenuItem.Text = "&Выход";
             // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.DefaultExt = "txt";
+            this.saveFileDialog.Filter = "Текстовые файлы|*.txt;";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -415,6 +421,7 @@ namespace StreletzBuilder
         private System.Windows.Forms.ContextMenuStrip contextMenuStripTools;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripHelp;
         private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 

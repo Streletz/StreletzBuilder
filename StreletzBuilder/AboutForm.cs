@@ -28,7 +28,7 @@ namespace StreletzBuilder
             string url = "https://streletzcoder.ru/";
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                Process.Start(new ProcessStartInfo("cmd", $"/c start {url.Replace("&", "^&")}") { CreateNoWindow = true }); 
+                Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true }); 
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
