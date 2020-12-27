@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,11 +61,24 @@ namespace StreletzBuilder
             switch (e.ClickedItem.Name)
             {
                 case "saveGitOutputMenuItem":
-                    MessageBox.Show("Фунционал в разработке!");
+                    SaveIntoTextFile(textBoxGit.Text);
                     break;
                 case "saveBuildOutputMenuItem":
-                    MessageBox.Show("Фунционал в разработке!");
+                    SaveIntoTextFile(textBoxBuild.Text);
                     break;
+            }
+        }
+
+        private void SaveIntoTextFile(string text)
+        {
+            if (String.IsNullOrEmpty(text))
+            {
+                MessageBox.Show("Нет данных для сохранения!");
+                return;
+            }
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(saveFileDialog.FileName, text);
             }
         }
 
@@ -85,19 +99,19 @@ namespace StreletzBuilder
             statusLabel.Text = "Сборка...";
             NetCoreBuilder builder = new NetCoreBuilder()
             {
-                SolutionFilePath = SettingsManager.GetInstance().Settings.SolutionFilePath 
+                SolutionFilePath = SettingsManager.GetInstance().Settings.SolutionFilePath
             };
             textBoxBuild.Text = builder.Build();
             statusLabel.Text = "Сборка выполнена!";
         }
 
         private void UpdateFromRemoteRepository()
-        {                            
+        {
             statusLabel.Text = "Обновление репозитория...";
             Git git = new Git()
             {
-                GitPath = SettingsManager.GetInstance().Settings.GitPath, 
-                RepositoryPath = SettingsManager.GetInstance().Settings.RepositoryPath 
+                GitPath = SettingsManager.GetInstance().Settings.GitPath,
+                RepositoryPath = SettingsManager.GetInstance().Settings.RepositoryPath
             };
             textBoxGit.Text = git.Pull();
             statusLabel.Text = "Репозиторий обновлён!";
