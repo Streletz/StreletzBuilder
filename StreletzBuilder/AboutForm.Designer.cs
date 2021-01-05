@@ -29,6 +29,7 @@ namespace StreletzBuilder
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             this.labelProgramName = new System.Windows.Forms.Label();
             this.labelAuthor = new System.Windows.Forms.Label();
             this.linkLabelSite = new System.Windows.Forms.LinkLabel();
@@ -108,10 +109,12 @@ namespace StreletzBuilder
             this.Controls.Add(this.labelAuthor);
             this.Controls.Add(this.labelProgramName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutForm";
+            this.ShowInTaskbar = false;
             this.Text = "О программе";
             this.Load += new System.EventHandler(this.AboutForm_Load);
             this.ResumeLayout(false);
