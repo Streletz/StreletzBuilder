@@ -2,3 +2,4 @@ obj
 bin
 /.vs/StreletzBuilder/v16/*.suo
 /.vs/StreletzBuilder/DesignTimeBuild/.dtbcache.v2
+/Setup/Release
