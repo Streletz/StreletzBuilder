@@ -91,17 +91,17 @@ namespace StreletzBuilder
             outputDataTabs.SelectedTab = gitPage;
             UpdateFromRemoteRepository();
             outputDataTabs.SelectedTab = buildPage;
-            build();
+            buildAsync();
         }
 
-        private void build()
+        private async Task buildAsync()
         {
             statusLabel.Text = "Сборка...";
             NetCoreBuilder builder = new NetCoreBuilder()
             {
                 SolutionFilePath = SettingsManager.GetInstance().Settings.SolutionFilePath
             };
-            textBoxBuild.Text = builder.Build();
+            textBoxBuild.Text = await builder.BuildAsync();
             statusLabel.Text = "Сборка выполнена!";
         }
 
@@ -145,7 +145,7 @@ namespace StreletzBuilder
                 return;
             }
             outputDataTabs.SelectedTab = buildPage;
-            build();
+            buildAsync();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace NetCoreBuildIntegration.Builders
 {
@@ -32,7 +33,7 @@ namespace NetCoreBuildIntegration.Builders
         /// <summary>
         /// Сборка решения.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Вывод сообщений компилятора.</returns>
         public string Build()
         {
             Process builderProcess = PrepareBuilderProcess($"/c {BUILD_COMMAND} {SolutionFilePath} ");
@@ -44,6 +45,14 @@ namespace NetCoreBuildIntegration.Builders
             }
             string sourceOutput = sb.ToString();
             return sourceOutput;            
+        }
+        /// <summary>
+        /// Асинхронная сборка решения.
+        /// </summary>
+        /// <returns>Асинхронный вывод сообщений компилятора.</returns>
+        public Task<string> BuildAsync()
+        {
+            return Task<string>.Factory.StartNew(()=>Build());
         }
 
 
