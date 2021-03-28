@@ -22,7 +22,7 @@ namespace NetCoreBuildIntegration.Builders
         /// <summary>
         /// Путь к файлу решения.
         /// </summary>
-        public string SolutionFilePath { get; set; }       
+        public string SolutionFilePath { get; set; }
 
         public NetCoreBuilder()
         {
@@ -44,7 +44,7 @@ namespace NetCoreBuildIntegration.Builders
                 sb.Append($"{builderProcess.StandardOutput.ReadLine()}\n\r"); ;
             }
             string sourceOutput = sb.ToString();
-            return sourceOutput;            
+            return sourceOutput;
         }
         /// <summary>
         /// Асинхронная сборка решения.
@@ -52,15 +52,15 @@ namespace NetCoreBuildIntegration.Builders
         /// <returns>Асинхронный вывод сообщений компилятора.</returns>
         public Task<string> BuildAsync()
         {
-            return Task<string>.Factory.StartNew(()=>Build());
+            return Task<string>.Factory.StartNew(() => Build());
         }
 
 
         private Process PrepareBuilderProcess(string command)
-        {            
+        {
             Process builderProcess = new Process();
-            builderProcess.StartInfo.FileName = CONSOLE_EXECUTING_COMAND;            
-            builderProcess.StartInfo.Arguments = command;            
+            builderProcess.StartInfo.FileName = CONSOLE_EXECUTING_COMAND;
+            builderProcess.StartInfo.Arguments = command;
             builderProcess.StartInfo.RedirectStandardOutput = true;
             builderProcess.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(866);
             builderProcess.StartInfo.CreateNoWindow = true;

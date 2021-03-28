@@ -84,14 +84,19 @@ namespace StreletzBuilder
 
         private void buttonUpdateBuild_Click(object sender, EventArgs e)
         {
+            _ = UpdateAndBuild();
+        }
+
+        private async Task UpdateAndBuild()
+        {
             if (!CheckConfigurationReady())
             {
                 return;
             }
             outputDataTabs.SelectedTab = gitPage;
-            UpdateFromRemoteRepository();
+            await UpdateFromRemoteRepositoryAsync();
             outputDataTabs.SelectedTab = buildPage;
-            _ = buildAsync();
+            await buildAsync();
         }
 
         private async Task buildAsync()
@@ -105,7 +110,7 @@ namespace StreletzBuilder
             statusLabel.Text = "Сборка выполнена!";
         }
 
-        private void UpdateFromRemoteRepository()
+        private async Task UpdateFromRemoteRepositoryAsync()
         {
             statusLabel.Text = "Обновление репозитория...";
             Git git = new Git()
@@ -113,7 +118,7 @@ namespace StreletzBuilder
                 GitPath = SettingsManager.GetInstance().Settings.GitPath,
                 RepositoryPath = SettingsManager.GetInstance().Settings.RepositoryPath
             };
-            textBoxGit.Text = git.Pull();
+            textBoxGit.Text = await git.PullAsync();
             statusLabel.Text = "Репозиторий обновлён!";
         }
 
@@ -135,7 +140,7 @@ namespace StreletzBuilder
                 return;
             }
             outputDataTabs.SelectedTab = gitPage;
-            UpdateFromRemoteRepository();
+            _ = UpdateFromRemoteRepositoryAsync();
         }
 
         private void buttonBuild_Click(object sender, EventArgs e)
