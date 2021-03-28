@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace GitIntegration
 {
@@ -36,6 +37,14 @@ namespace GitIntegration
                 sb.Append($"{gitProcess.StandardOutput.ReadLine()}\n\r");
             }
             return sb.ToString();
+        }
+        /// <summary>
+        /// Асинхронное выполнение команды получения изменений из удалённого репозитория (git pull).
+        /// </summary>
+        /// <returns>Асинхронный вывод Git.</returns>
+        public Task<string> PullAsync()
+        {
+            return Task<string>.Factory.StartNew(() => Pull());
         }
 
         private Process PrepareGitProcess(string gitCommand)
