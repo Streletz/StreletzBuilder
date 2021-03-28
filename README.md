@@ -12,3 +12,17 @@ System requirements:
  - Git 2.17.0 or higher;
  - Microsoft Visual Studio Build Tools 2019 or higher;
  - .NET Core 3.1 (to build the program itself).
+
+## WHATS NEW
+
+ - When updating and building, the user interface is not blocked;
+ - Minor improvements.
+
+## HISTORY
+
+### Version 1.1.0
+ - When updating and building, the user interface is not blocked;
+ - Minor improvements.
+ 
+### Version 1.0
+ - First version.
