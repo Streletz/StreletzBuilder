@@ -91,7 +91,7 @@ namespace StreletzBuilder
             outputDataTabs.SelectedTab = gitPage;
             UpdateFromRemoteRepository();
             outputDataTabs.SelectedTab = buildPage;
-            buildAsync();
+            _ = buildAsync();
         }
 
         private async Task buildAsync()
@@ -145,7 +145,7 @@ namespace StreletzBuilder
                 return;
             }
             outputDataTabs.SelectedTab = buildPage;
-            buildAsync();
+            _ = buildAsync();
         }
     }
 }
