@@ -13,6 +13,8 @@ namespace StreletzBuilder.Settings
         public string GitPath { get; set; }
         public string RepositoryPath { get; set; }
         public string SolutionFilePath { get; set; }
+        public string MsBuildExePath { get; set; }
+        public bool UseMsBuild { get; set; }
 
     }
 }

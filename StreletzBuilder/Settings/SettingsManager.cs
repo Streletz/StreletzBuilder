@@ -39,7 +39,8 @@ namespace StreletzBuilder.Settings
             {
                 return !String.IsNullOrEmpty(settings.GitPath)
                     && !String.IsNullOrEmpty(settings.RepositoryPath)
-                    && !String.IsNullOrEmpty(settings.SolutionFilePath);
+                    && !String.IsNullOrEmpty(settings.SolutionFilePath)
+                    && ((settings.UseMsBuild && (!string.IsNullOrEmpty(settings.MsBuildExePath) && !string.IsNullOrWhiteSpace(settings.MsBuildExePath))) || !settings.UseMsBuild);
             }
         }
 
@@ -62,7 +63,8 @@ namespace StreletzBuilder.Settings
                 {
                     settingsData = (Settings)serializer.Deserialize(fs);
                 }
-            }catch(FileNotFoundException ex)
+            }
+            catch (FileNotFoundException ex)
             {
                 settingsData = new Settings();
             }

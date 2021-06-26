@@ -30,6 +30,12 @@ namespace StreletzBuilder
             SettingsManager.GetInstance().Settings.GitPath = textBoxGit.Text;
             SettingsManager.GetInstance().Settings.RepositoryPath = textBoxRepository.Text;
             SettingsManager.GetInstance().Settings.SolutionFilePath = textBoxSln.Text;
+            SettingsManager.GetInstance().Settings.UseMsBuild = checkBoxUseMsBuild.Checked;
+            SettingsManager.GetInstance().Settings.MsBuildExePath = textBoxMSBuild.Text;
+            if (!((checkBoxUseMsBuild.Checked && !string.IsNullOrEmpty(textBoxMSBuild.Text) && !string.IsNullOrWhiteSpace(textBoxMSBuild.Text)) || !checkBoxUseMsBuild.Checked))
+            {
+                MessageBox.Show("Расположение файла MSBuild.exe не указано!");
+            }
             closeByBtn = true;
         }
 
@@ -46,6 +52,9 @@ namespace StreletzBuilder
             textBoxGit.Text = SettingsManager.GetInstance().Settings.GitPath;
             textBoxRepository.Text = SettingsManager.GetInstance().Settings.RepositoryPath;
             textBoxSln.Text = SettingsManager.GetInstance().Settings.SolutionFilePath;
+            checkBoxUseMsBuild.Checked = SettingsManager.GetInstance().Settings.UseMsBuild;
+            textBoxMSBuild.Text = SettingsManager.GetInstance().Settings.MsBuildExePath;
+            buttonSelectMsBuild.Enabled = SettingsManager.GetInstance().Settings.UseMsBuild;
         }
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -70,6 +79,19 @@ namespace StreletzBuilder
             if (openFileDialogSln.ShowDialog() == DialogResult.OK)
             {
                 textBoxSln.Text = openFileDialogSln.FileName;
+            }
+        }
+
+        private void checkBoxUseMsBuild_CheckedChanged(object sender, EventArgs e)
+        {
+            buttonSelectMsBuild.Enabled = checkBoxUseMsBuild.Checked;
+        }
+
+        private void buttonSelectMsBuild_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogMsBuild.ShowDialog() == DialogResult.OK)
+            {
+                textBoxMSBuild.Text = openFileDialogMsBuild.FileName;
             }
         }
     }
