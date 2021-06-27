@@ -9,7 +9,7 @@ namespace StreletzBuilder.Settings
     /// <summary>
     /// Управление настройками программы.
     /// </summary>
-    class SettingsManager
+    public class SettingsManager
     {
         private static SettingsManager instance;
 

@@ -101,11 +101,20 @@ namespace StreletzBuilder
 
         private async Task buildAsync()
         {
+            ISolutionBuilder builder;
             statusLabel.Text = "Сборка...";
-            NetCoreBuilder builder = new NetCoreBuilder()
+            if (SettingsManager.GetInstance().Settings.UseMsBuild)
             {
-                SolutionFilePath = SettingsManager.GetInstance().Settings.SolutionFilePath
-            };
+                builder = new NetFrameworkBuilder(SettingsManager.GetInstance().Settings.MsBuildExePath);
+                builder.SolutionFilePath = SettingsManager.GetInstance().Settings.SolutionFilePath;
+            }
+            else
+            {
+                builder = new NetCoreBuilder()
+                {
+                    SolutionFilePath = SettingsManager.GetInstance().Settings.SolutionFilePath
+                };
+            }
             textBoxBuild.Text = await builder.BuildAsync();
             statusLabel.Text = "Сборка выполнена!";
         }

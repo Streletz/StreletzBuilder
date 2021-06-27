@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 namespace NetCoreBuildIntegration.Builders
 {
     /// <summary>
-    /// Средства работы со сборкой .NET Core
+    /// Средства работы со сборкой .NET Framework
     /// </summary>
-    public class NetCoreBuilder : ISolutionBuilder
+    public class NetFrameworkBuilder : ISolutionBuilder
     {
-        /// <summary>
-        /// Консольная команда для сборки.
-        /// </summary>
-        private const string BUILD_COMMAND = "dotnet build";
+        private readonly string msBuildPath;
         /// <summary>
         /// Команд запуска консоли.
         /// </summary>
@@ -24,8 +21,10 @@ namespace NetCoreBuildIntegration.Builders
         /// </summary>
         public string SolutionFilePath { get; set; }
 
-        public NetCoreBuilder()
+        public NetFrameworkBuilder(string msBuildPath)
         {
+            // задаём путь к MSBuild.exe
+            this.msBuildPath = msBuildPath;
             // Включаем поддержку кодировки вывода консоли.
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
@@ -36,7 +35,7 @@ namespace NetCoreBuildIntegration.Builders
         /// <returns>Вывод сообщений компилятора.</returns>
         public string Build()
         {
-            Process builderProcess = PrepareBuilderProcess($"/c {BUILD_COMMAND} {SolutionFilePath} ");
+            Process builderProcess = PrepareBuilderProcess($"/c \"{msBuildPath}\" {SolutionFilePath} ");
             var sb = new StringBuilder();
             builderProcess.Start();
             while (!builderProcess.StandardOutput.EndOfStream)
