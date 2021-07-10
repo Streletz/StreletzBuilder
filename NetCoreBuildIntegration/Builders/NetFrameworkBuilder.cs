@@ -35,7 +35,8 @@ namespace NetCoreBuildIntegration.Builders
         /// <returns>Вывод сообщений компилятора.</returns>
         public string Build()
         {
-            Process builderProcess = PrepareBuilderProcess($"/c \"{msBuildPath}\" {SolutionFilePath} ");
+            //Process builderProcess = PrepareBuilderProcess($"/c \"{msBuildPath}\" {SolutionFilePath} /p:DeployOnBuild=true /p:PublishProfile=FolderProfile  /p:VisualStudioVersion=14.0");
+            Process builderProcess = PrepareBuilderProcess($"/c \"{msBuildPath}\" {SolutionFilePath}");
             var sb = new StringBuilder();
             builderProcess.Start();
             while (!builderProcess.StandardOutput.EndOfStream)
