@@ -1,4 +1,5 @@
-﻿using StreletzBuilder.Settings;
+﻿using NetCoreBuildIntegration.VSVersion;
+using StreletzBuilder.Settings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,6 +37,7 @@ namespace StreletzBuilder
             {
                 MessageBox.Show("Расположение файла MSBuild.exe не указано!");
             }
+            SettingsManager.GetInstance().Settings.SelectedVsVersion = (VsVersionItem)comboBoxVsVersion.SelectedItem;
             closeByBtn = true;
         }
 
@@ -55,6 +57,15 @@ namespace StreletzBuilder
             checkBoxUseMsBuild.Checked = SettingsManager.GetInstance().Settings.UseMsBuild;
             textBoxMSBuild.Text = SettingsManager.GetInstance().Settings.MsBuildExePath;
             buttonSelectMsBuild.Enabled = SettingsManager.GetInstance().Settings.UseMsBuild;
+            comboBoxVsVersion.Items.AddRange(SupportedVsVersions.SupportedVersions().ToArray());
+            if (SettingsManager.GetInstance().Settings.SelectedVsVersion != null)
+            {
+                comboBoxVsVersion.SelectedItem = SettingsManager.GetInstance().Settings.SelectedVsVersion;
+            }
+            else
+            {
+                comboBoxVsVersion.SelectedItem = SupportedVsVersions.DefaultVersion;
+            }
         }
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)

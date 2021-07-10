@@ -50,6 +50,8 @@ namespace StreletzBuilder
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxUseMsBuild = new System.Windows.Forms.CheckBox();
             this.openFileDialogMsBuild = new System.Windows.Forms.OpenFileDialog();
+            this.labelVsVersionTitle = new System.Windows.Forms.Label();
+            this.comboBoxVsVersion = new System.Windows.Forms.ComboBox();
             this.groupBoxMsBulid.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +59,7 @@ namespace StreletzBuilder
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonSave.Location = new System.Drawing.Point(594, 310);
+            this.buttonSave.Location = new System.Drawing.Point(594, 364);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(94, 29);
             this.buttonSave.TabIndex = 0;
@@ -69,7 +71,7 @@ namespace StreletzBuilder
             // 
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(694, 310);
+            this.buttonCancel.Location = new System.Drawing.Point(694, 364);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(94, 29);
             this.buttonCancel.TabIndex = 1;
@@ -180,13 +182,15 @@ namespace StreletzBuilder
             // 
             this.groupBoxMsBulid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxMsBulid.Controls.Add(this.comboBoxVsVersion);
+            this.groupBoxMsBulid.Controls.Add(this.labelVsVersionTitle);
             this.groupBoxMsBulid.Controls.Add(this.buttonSelectMsBuild);
             this.groupBoxMsBulid.Controls.Add(this.textBoxMSBuild);
             this.groupBoxMsBulid.Controls.Add(this.label1);
             this.groupBoxMsBulid.Controls.Add(this.checkBoxUseMsBuild);
             this.groupBoxMsBulid.Location = new System.Drawing.Point(12, 171);
             this.groupBoxMsBulid.Name = "groupBoxMsBulid";
-            this.groupBoxMsBulid.Size = new System.Drawing.Size(776, 125);
+            this.groupBoxMsBulid.Size = new System.Drawing.Size(776, 187);
             this.groupBoxMsBulid.TabIndex = 11;
             this.groupBoxMsBulid.TabStop = false;
             this.groupBoxMsBulid.Text = "Использование MSBuild";
@@ -233,11 +237,28 @@ namespace StreletzBuilder
             // 
             this.openFileDialogMsBuild.Filter = "Файл MSBuild.exe|MSBuild.exe;";
             // 
+            // labelVsVersionTitle
+            // 
+            this.labelVsVersionTitle.AutoSize = true;
+            this.labelVsVersionTitle.Location = new System.Drawing.Point(6, 106);
+            this.labelVsVersionTitle.Name = "labelVsVersionTitle";
+            this.labelVsVersionTitle.Size = new System.Drawing.Size(149, 20);
+            this.labelVsVersionTitle.TabIndex = 4;
+            this.labelVsVersionTitle.Text = "Версия Visual Studio";
+            // 
+            // comboBoxVsVersion
+            // 
+            this.comboBoxVsVersion.FormattingEnabled = true;
+            this.comboBoxVsVersion.Location = new System.Drawing.Point(6, 129);
+            this.comboBoxVsVersion.Name = "comboBoxVsVersion";
+            this.comboBoxVsVersion.Size = new System.Drawing.Size(664, 28);
+            this.comboBoxVsVersion.TabIndex = 5;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 351);
+            this.ClientSize = new System.Drawing.Size(800, 405);
             this.Controls.Add(this.groupBoxMsBulid);
             this.Controls.Add(this.buttonSln);
             this.Controls.Add(this.buttonRepositorySelection);
@@ -288,5 +309,7 @@ namespace StreletzBuilder
         private System.Windows.Forms.TextBox textBoxMSBuild;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.OpenFileDialog openFileDialogMsBuild;
+        private System.Windows.Forms.ComboBox comboBoxVsVersion;
+        private System.Windows.Forms.Label labelVsVersionTitle;
     }
 }

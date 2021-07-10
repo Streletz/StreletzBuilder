@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetCoreBuildIntegration.VSVersion;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,6 +16,8 @@ namespace StreletzBuilder.Settings
         public string SolutionFilePath { get; set; }
         public string MsBuildExePath { get; set; }
         public bool UseMsBuild { get; set; }
+
+        public VsVersionItem SelectedVsVersion { get; set; }
 
     }
 }

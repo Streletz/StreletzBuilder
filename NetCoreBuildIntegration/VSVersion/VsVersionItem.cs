@@ -7,10 +7,16 @@ namespace NetCoreBuildIntegration.VSVersion
     /// <summary>
     /// Информация о версии Visual Studio.
     /// </summary>
+    [Serializable]
     public class VsVersionItem
     {
         private readonly string version;
         private readonly string name;
+
+        public VsVersionItem()
+        {
+
+        }
         public VsVersionItem(string version, string name)
         {
             this.version = version;
@@ -24,6 +30,11 @@ namespace NetCoreBuildIntegration.VSVersion
         /// Версия Visual Studio.
         /// </summary>
         public string Version { get { return version; } }
+
+        public override string ToString()
+        {
+            return name;
+        }
 
     }
 }
