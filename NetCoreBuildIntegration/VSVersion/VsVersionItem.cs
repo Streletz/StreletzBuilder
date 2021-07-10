@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace NetCoreBuildIntegration.VSVersion
@@ -10,30 +11,26 @@ namespace NetCoreBuildIntegration.VSVersion
     [Serializable]
     public class VsVersionItem
     {
-        private readonly string version;
-        private readonly string name;
-
         public VsVersionItem()
         {
-
         }
         public VsVersionItem(string version, string name)
         {
-            this.version = version;
-            this.name = name;
+            this.Version = version;
+            this.Name = name;
         }
         /// <summary>
         /// Название версии Visual Studio.
         /// </summary>
-        public string Name { get { return name; } }
+        public string Name { get; set; }
         /// <summary>
         /// Версия Visual Studio.
         /// </summary>
-        public string Version { get { return version; } }
+        public string Version { get; set; }
 
         public override string ToString()
         {
-            return name;
+            return Name;
         }
 
     }

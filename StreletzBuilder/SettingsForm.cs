@@ -58,9 +58,10 @@ namespace StreletzBuilder
             textBoxMSBuild.Text = SettingsManager.GetInstance().Settings.MsBuildExePath;
             buttonSelectMsBuild.Enabled = SettingsManager.GetInstance().Settings.UseMsBuild;
             comboBoxVsVersion.Items.AddRange(SupportedVsVersions.SupportedVersions().ToArray());
+            comboBoxVsVersion.Enabled = SettingsManager.GetInstance().Settings.UseMsBuild;
             if (SettingsManager.GetInstance().Settings.SelectedVsVersion != null)
             {
-                comboBoxVsVersion.SelectedItem = SettingsManager.GetInstance().Settings.SelectedVsVersion;
+                comboBoxVsVersion.SelectedIndex = SupportedVsVersions.SupportedVersions().FindIndex(item => item.Name == SettingsManager.GetInstance().Settings.SelectedVsVersion.Name);
             }
             else
             {
@@ -96,6 +97,7 @@ namespace StreletzBuilder
         private void checkBoxUseMsBuild_CheckedChanged(object sender, EventArgs e)
         {
             buttonSelectMsBuild.Enabled = checkBoxUseMsBuild.Checked;
+            comboBoxVsVersion.Enabled = checkBoxUseMsBuild.Checked;
         }
 
         private void buttonSelectMsBuild_Click(object sender, EventArgs e)
