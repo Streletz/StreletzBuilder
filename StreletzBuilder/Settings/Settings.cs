@@ -18,6 +18,5 @@ namespace StreletzBuilder.Settings
         public string MsBuildExePath { get; set; }        
         public bool UseMsBuild { get; set; }        
         public VsVersionItem SelectedVsVersion { get; set; }
-
     }
 }

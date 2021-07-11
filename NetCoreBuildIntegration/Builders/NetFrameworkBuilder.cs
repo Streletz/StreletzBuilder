@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetCoreBuildIntegration.VSVersion;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -20,13 +21,15 @@ namespace NetCoreBuildIntegration.Builders
         /// Путь к файлу решения.
         /// </summary>
         public string SolutionFilePath { get; set; }
+        private VsVersionItem selectedVsVersion;
 
-        public NetFrameworkBuilder(string msBuildPath)
+        public NetFrameworkBuilder(string msBuildPath, VsVersionItem vsVersion=null)
         {
             // задаём путь к MSBuild.exe
             this.msBuildPath = msBuildPath;
             // Включаем поддержку кодировки вывода консоли.
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            selectedVsVersion = vsVersion;
         }
 
         /// <summary>
@@ -35,8 +38,14 @@ namespace NetCoreBuildIntegration.Builders
         /// <returns>Вывод сообщений компилятора.</returns>
         public string Build()
         {
-            //Process builderProcess = PrepareBuilderProcess($"/c \"{msBuildPath}\" {SolutionFilePath} /p:DeployOnBuild=true /p:PublishProfile=FolderProfile  /p:VisualStudioVersion=14.0");
-            Process builderProcess = PrepareBuilderProcess($"/c \"{msBuildPath}\" {SolutionFilePath}");
+            Process builderProcess;
+            if ((selectedVsVersion == null) || (selectedVsVersion==SupportedVsVersions.DefaultVersion)) {
+                builderProcess = PrepareBuilderProcess($"/c \"{msBuildPath}\" {SolutionFilePath}");
+            }
+            else
+            {
+                builderProcess = PrepareBuilderProcess($"/c \"{msBuildPath}\" {SolutionFilePath} /p:VisualStudioVersion={selectedVsVersion.Version}");
+            }
             var sb = new StringBuilder();
             builderProcess.Start();
             while (!builderProcess.StandardOutput.EndOfStream)

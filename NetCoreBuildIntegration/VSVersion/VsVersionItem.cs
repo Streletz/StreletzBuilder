@@ -33,5 +33,30 @@ namespace NetCoreBuildIntegration.VSVersion
             return Name;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (!(obj is VsVersionItem))
+            {
+                return false;
+            }
+            VsVersionItem objItem = (VsVersionItem)obj;
+            return (this.Name == objItem.Name) && (this.Version == objItem.Version);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Name, Version);
+        }
+
+        public static bool operator ==(VsVersionItem item1, VsVersionItem item2)
+        {
+            return item1.Equals(item2) == true;
+        }
+
+        public static bool operator !=(VsVersionItem item1, VsVersionItem item2)
+        {
+            return item1.Equals(item2) == false;
+        }
+
     }
 }
