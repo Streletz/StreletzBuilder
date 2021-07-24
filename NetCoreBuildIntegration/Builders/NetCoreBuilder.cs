@@ -14,11 +14,11 @@ namespace NetCoreBuildIntegration.Builders
         /// <summary>
         /// Консольная команда для сборки.
         /// </summary>
-        private const string BUILD_COMMAND = "dotnet build";
+        private const string BuildCommand = "dotnet build";
         /// <summary>
         /// Команд запуска консоли.
         /// </summary>
-        private const string CONSOLE_EXECUTING_COMAND = "cmd";
+        private const string ConsoleExecutingCommand = "cmd";
         /// <summary>
         /// Путь к файлу решения.
         /// </summary>
@@ -36,7 +36,7 @@ namespace NetCoreBuildIntegration.Builders
         /// <returns>Вывод сообщений компилятора.</returns>
         public string Build()
         {
-            Process builderProcess = PrepareBuilderProcess($"/c {BUILD_COMMAND} {SolutionFilePath} ");
+            Process builderProcess = PrepareBuilderProcess($"/c {BuildCommand} {SolutionFilePath} ");
             var sb = new StringBuilder();
             builderProcess.Start();
             while (!builderProcess.StandardOutput.EndOfStream)
@@ -59,7 +59,7 @@ namespace NetCoreBuildIntegration.Builders
         private Process PrepareBuilderProcess(string command)
         {
             Process builderProcess = new Process();
-            builderProcess.StartInfo.FileName = CONSOLE_EXECUTING_COMAND;
+            builderProcess.StartInfo.FileName = ConsoleExecutingCommand;
             builderProcess.StartInfo.Arguments = command;
             builderProcess.StartInfo.RedirectStandardOutput = true;
             builderProcess.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(866);

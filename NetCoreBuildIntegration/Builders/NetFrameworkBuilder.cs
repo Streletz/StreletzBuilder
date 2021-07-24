@@ -12,24 +12,24 @@ namespace NetCoreBuildIntegration.Builders
     /// </summary>
     public class NetFrameworkBuilder : ISolutionBuilder
     {
-        private readonly string msBuildPath;
+        private readonly string _msBuildPath;
         /// <summary>
         /// Команд запуска консоли.
         /// </summary>
-        private const string CONSOLE_EXECUTING_COMAND = "cmd";
+        private const string ConsoleExecutingCommand = "cmd";
         /// <summary>
         /// Путь к файлу решения.
         /// </summary>
         public string SolutionFilePath { get; set; }
-        private VsVersionItem selectedVsVersion;
+        private VsVersionItem _selectedVsVersion;
 
         public NetFrameworkBuilder(string msBuildPath, VsVersionItem vsVersion=null)
         {
             // задаём путь к MSBuild.exe
-            this.msBuildPath = msBuildPath;
+            this._msBuildPath = msBuildPath;
             // Включаем поддержку кодировки вывода консоли.
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            selectedVsVersion = vsVersion;
+            _selectedVsVersion = vsVersion;
         }
 
         /// <summary>
@@ -39,12 +39,12 @@ namespace NetCoreBuildIntegration.Builders
         public string Build()
         {
             Process builderProcess;
-            if ((selectedVsVersion == null) || (selectedVsVersion==SupportedVsVersions.DefaultVersion)) {
-                builderProcess = PrepareBuilderProcess($"/c \"{msBuildPath}\" {SolutionFilePath}");
+            if ((_selectedVsVersion == null) || (_selectedVsVersion==SupportedVsVersions.DefaultVersion)) {
+                builderProcess = PrepareBuilderProcess($"/c \"{_msBuildPath}\" {SolutionFilePath}");
             }
             else
             {
-                builderProcess = PrepareBuilderProcess($"/c \"{msBuildPath}\" {SolutionFilePath} /p:VisualStudioVersion={selectedVsVersion.Version}");
+                builderProcess = PrepareBuilderProcess($"/c \"{_msBuildPath}\" {SolutionFilePath} /p:VisualStudioVersion={_selectedVsVersion.Version}");
             }
             var sb = new StringBuilder();
             builderProcess.Start();
@@ -68,7 +68,7 @@ namespace NetCoreBuildIntegration.Builders
         private Process PrepareBuilderProcess(string command)
         {
             Process builderProcess = new Process();
-            builderProcess.StartInfo.FileName = CONSOLE_EXECUTING_COMAND;
+            builderProcess.StartInfo.FileName = ConsoleExecutingCommand;
             builderProcess.StartInfo.Arguments = command;
             builderProcess.StartInfo.RedirectStandardOutput = true;
             builderProcess.StartInfo.StandardOutputEncoding = Encoding.GetEncoding(866);
