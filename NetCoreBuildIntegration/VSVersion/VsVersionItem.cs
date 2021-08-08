@@ -55,7 +55,7 @@ namespace NetCoreBuildIntegration.VSVersion
 
         public static bool operator !=(VsVersionItem item1, VsVersionItem item2)
         {
-            return item1.Equals(item2) == false;
+            return item1?.Equals(item2) == false;
         }
 
     }
