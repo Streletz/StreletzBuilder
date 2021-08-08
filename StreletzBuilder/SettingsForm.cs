@@ -1,4 +1,5 @@
-﻿using StreletzBuilder.Settings;
+﻿using NetCoreBuildIntegration.VSVersion;
+using StreletzBuilder.Settings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,13 @@ namespace StreletzBuilder
             SettingsManager.GetInstance().Settings.GitPath = textBoxGit.Text;
             SettingsManager.GetInstance().Settings.RepositoryPath = textBoxRepository.Text;
             SettingsManager.GetInstance().Settings.SolutionFilePath = textBoxSln.Text;
+            SettingsManager.GetInstance().Settings.UseMsBuild = checkBoxUseMsBuild.Checked;
+            SettingsManager.GetInstance().Settings.MsBuildExePath = textBoxMSBuild.Text;
+            if (!((checkBoxUseMsBuild.Checked && !string.IsNullOrEmpty(textBoxMSBuild.Text) && !string.IsNullOrWhiteSpace(textBoxMSBuild.Text)) || !checkBoxUseMsBuild.Checked))
+            {
+                MessageBox.Show("Расположение файла MSBuild.exe не указано!");
+            }
+            SettingsManager.GetInstance().Settings.SelectedVsVersion = (VsVersionItem)comboBoxVsVersion.SelectedItem;
             closeByBtn = true;
         }
 
@@ -46,6 +54,19 @@ namespace StreletzBuilder
             textBoxGit.Text = SettingsManager.GetInstance().Settings.GitPath;
             textBoxRepository.Text = SettingsManager.GetInstance().Settings.RepositoryPath;
             textBoxSln.Text = SettingsManager.GetInstance().Settings.SolutionFilePath;
+            checkBoxUseMsBuild.Checked = SettingsManager.GetInstance().Settings.UseMsBuild;
+            textBoxMSBuild.Text = SettingsManager.GetInstance().Settings.MsBuildExePath;
+            buttonSelectMsBuild.Enabled = SettingsManager.GetInstance().Settings.UseMsBuild;
+            comboBoxVsVersion.Items.AddRange(SupportedVsVersions.SupportedVersions().ToArray());
+            comboBoxVsVersion.Enabled = SettingsManager.GetInstance().Settings.UseMsBuild;
+            if (SettingsManager.GetInstance().Settings.SelectedVsVersion != null)
+            {
+                comboBoxVsVersion.SelectedIndex = SupportedVsVersions.SupportedVersions().FindIndex(item => item.Name == SettingsManager.GetInstance().Settings.SelectedVsVersion.Name);
+            }
+            else
+            {
+                comboBoxVsVersion.SelectedItem = SupportedVsVersions.DefaultVersion;
+            }
         }
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -70,6 +91,20 @@ namespace StreletzBuilder
             if (openFileDialogSln.ShowDialog() == DialogResult.OK)
             {
                 textBoxSln.Text = openFileDialogSln.FileName;
+            }
+        }
+
+        private void checkBoxUseMsBuild_CheckedChanged(object sender, EventArgs e)
+        {
+            buttonSelectMsBuild.Enabled = checkBoxUseMsBuild.Checked;
+            comboBoxVsVersion.Enabled = checkBoxUseMsBuild.Checked;
+        }
+
+        private void buttonSelectMsBuild_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogMsBuild.ShowDialog() == DialogResult.OK)
+            {
+                textBoxMSBuild.Text = openFileDialogMsBuild.FileName;
             }
         }
     }
