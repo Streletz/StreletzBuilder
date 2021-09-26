@@ -44,13 +44,22 @@ namespace StreletzBuilder
             this.repositoryFolderSelectionDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialogGit = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialogSln = new System.Windows.Forms.OpenFileDialog();
+            this.groupBoxMsBulid = new System.Windows.Forms.GroupBox();
+            this.buttonSelectMsBuild = new System.Windows.Forms.Button();
+            this.textBoxMSBuild = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBoxUseMsBuild = new System.Windows.Forms.CheckBox();
+            this.openFileDialogMsBuild = new System.Windows.Forms.OpenFileDialog();
+            this.labelVsVersionTitle = new System.Windows.Forms.Label();
+            this.comboBoxVsVersion = new System.Windows.Forms.ComboBox();
+            this.groupBoxMsBulid.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonSave
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonSave.Location = new System.Drawing.Point(594, 202);
+            this.buttonSave.Location = new System.Drawing.Point(594, 364);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(94, 29);
             this.buttonSave.TabIndex = 0;
@@ -62,7 +71,7 @@ namespace StreletzBuilder
             // 
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(694, 202);
+            this.buttonCancel.Location = new System.Drawing.Point(694, 364);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(94, 29);
             this.buttonCancel.TabIndex = 1;
@@ -169,11 +178,88 @@ namespace StreletzBuilder
             // 
             this.openFileDialogSln.Filter = "Файлы решений Visual Studio|*.sln;";
             // 
+            // groupBoxMsBulid
+            // 
+            this.groupBoxMsBulid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxMsBulid.Controls.Add(this.comboBoxVsVersion);
+            this.groupBoxMsBulid.Controls.Add(this.labelVsVersionTitle);
+            this.groupBoxMsBulid.Controls.Add(this.buttonSelectMsBuild);
+            this.groupBoxMsBulid.Controls.Add(this.textBoxMSBuild);
+            this.groupBoxMsBulid.Controls.Add(this.label1);
+            this.groupBoxMsBulid.Controls.Add(this.checkBoxUseMsBuild);
+            this.groupBoxMsBulid.Location = new System.Drawing.Point(12, 171);
+            this.groupBoxMsBulid.Name = "groupBoxMsBulid";
+            this.groupBoxMsBulid.Size = new System.Drawing.Size(776, 187);
+            this.groupBoxMsBulid.TabIndex = 11;
+            this.groupBoxMsBulid.TabStop = false;
+            this.groupBoxMsBulid.Text = "Использование MSBuild";
+            // 
+            // buttonSelectMsBuild
+            // 
+            this.buttonSelectMsBuild.Location = new System.Drawing.Point(676, 75);
+            this.buttonSelectMsBuild.Name = "buttonSelectMsBuild";
+            this.buttonSelectMsBuild.Size = new System.Drawing.Size(94, 29);
+            this.buttonSelectMsBuild.TabIndex = 3;
+            this.buttonSelectMsBuild.Text = "Выбрать";
+            this.buttonSelectMsBuild.UseVisualStyleBackColor = true;
+            this.buttonSelectMsBuild.Click += new System.EventHandler(this.buttonSelectMsBuild_Click);
+            // 
+            // textBoxMSBuild
+            // 
+            this.textBoxMSBuild.Location = new System.Drawing.Point(6, 76);
+            this.textBoxMSBuild.Name = "textBoxMSBuild";
+            this.textBoxMSBuild.ReadOnly = true;
+            this.textBoxMSBuild.Size = new System.Drawing.Size(664, 27);
+            this.textBoxMSBuild.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 53);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Файл MSBuild.exe";
+            // 
+            // checkBoxUseMsBuild
+            // 
+            this.checkBoxUseMsBuild.AutoSize = true;
+            this.checkBoxUseMsBuild.Location = new System.Drawing.Point(6, 26);
+            this.checkBoxUseMsBuild.Name = "checkBoxUseMsBuild";
+            this.checkBoxUseMsBuild.Size = new System.Drawing.Size(356, 24);
+            this.checkBoxUseMsBuild.TabIndex = 0;
+            this.checkBoxUseMsBuild.Text = "Использовать MSBuild вместо команды dotnet";
+            this.checkBoxUseMsBuild.UseVisualStyleBackColor = true;
+            this.checkBoxUseMsBuild.CheckedChanged += new System.EventHandler(this.checkBoxUseMsBuild_CheckedChanged);
+            // 
+            // openFileDialogMsBuild
+            // 
+            this.openFileDialogMsBuild.Filter = "Файл MSBuild.exe|MSBuild.exe;";
+            // 
+            // labelVsVersionTitle
+            // 
+            this.labelVsVersionTitle.AutoSize = true;
+            this.labelVsVersionTitle.Location = new System.Drawing.Point(6, 106);
+            this.labelVsVersionTitle.Name = "labelVsVersionTitle";
+            this.labelVsVersionTitle.Size = new System.Drawing.Size(149, 20);
+            this.labelVsVersionTitle.TabIndex = 4;
+            this.labelVsVersionTitle.Text = "Версия Visual Studio";
+            // 
+            // comboBoxVsVersion
+            // 
+            this.comboBoxVsVersion.FormattingEnabled = true;
+            this.comboBoxVsVersion.Location = new System.Drawing.Point(6, 129);
+            this.comboBoxVsVersion.Name = "comboBoxVsVersion";
+            this.comboBoxVsVersion.Size = new System.Drawing.Size(664, 28);
+            this.comboBoxVsVersion.TabIndex = 5;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 243);
+            this.ClientSize = new System.Drawing.Size(800, 405);
+            this.Controls.Add(this.groupBoxMsBulid);
             this.Controls.Add(this.buttonSln);
             this.Controls.Add(this.buttonRepositorySelection);
             this.Controls.Add(this.buttonGit);
@@ -195,6 +281,8 @@ namespace StreletzBuilder
             this.Text = "Настройка";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_FormClosing);
             this.Load += new System.EventHandler(this.SettingsForm_Load);
+            this.groupBoxMsBulid.ResumeLayout(false);
+            this.groupBoxMsBulid.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,5 +304,13 @@ namespace StreletzBuilder
         private System.Windows.Forms.FolderBrowserDialog repositoryFolderSelectionDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialogGit;
         private System.Windows.Forms.OpenFileDialog openFileDialogSln;
+        private System.Windows.Forms.GroupBox groupBoxMsBulid;
+        private System.Windows.Forms.CheckBox checkBoxUseMsBuild;
+        private System.Windows.Forms.Button buttonSelectMsBuild;
+        private System.Windows.Forms.TextBox textBoxMSBuild;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.OpenFileDialog openFileDialogMsBuild;
+        private System.Windows.Forms.ComboBox comboBoxVsVersion;
+        private System.Windows.Forms.Label labelVsVersionTitle;
     }
 }

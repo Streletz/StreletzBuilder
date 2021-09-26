@@ -101,11 +101,22 @@ namespace StreletzBuilder
 
         private async Task buildAsync()
         {
+            ISolutionBuilder builder;
             statusLabel.Text = "Сборка...";
-            NetCoreBuilder builder = new NetCoreBuilder()
+            if (SettingsManager.GetInstance().Settings.UseMsBuild)
             {
-                SolutionFilePath = SettingsManager.GetInstance().Settings.SolutionFilePath
-            };
+                builder = new NetFrameworkBuilder(SettingsManager.GetInstance().Settings.MsBuildExePath, SettingsManager.GetInstance().Settings.SelectedVsVersion)
+                {
+                    SolutionFilePath = SettingsManager.GetInstance().Settings.SolutionFilePath
+                };
+            }
+            else
+            {
+                builder = new NetCoreBuilder()
+                {
+                    SolutionFilePath = SettingsManager.GetInstance().Settings.SolutionFilePath
+                };
+            }
             textBoxBuild.Text = await builder.BuildAsync();
             statusLabel.Text = "Сборка выполнена!";
         }
@@ -113,7 +124,7 @@ namespace StreletzBuilder
         private async Task UpdateFromRemoteRepositoryAsync()
         {
             statusLabel.Text = "Обновление репозитория...";
-            Git git = new Git()
+            Git git = new()
             {
                 GitPath = SettingsManager.GetInstance().Settings.GitPath,
                 RepositoryPath = SettingsManager.GetInstance().Settings.RepositoryPath

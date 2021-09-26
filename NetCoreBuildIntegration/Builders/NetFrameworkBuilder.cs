@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetCoreBuildIntegration.VSVersion;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -7,14 +8,11 @@ using System.Threading.Tasks;
 namespace NetCoreBuildIntegration.Builders
 {
     /// <summary>
-    /// Средства работы со сборкой .NET Core
+    /// Средства работы со сборкой .NET Framework
     /// </summary>
-    public class NetCoreBuilder : ISolutionBuilder
+    public class NetFrameworkBuilder : ISolutionBuilder
     {
-        /// <summary>
-        /// Консольная команда для сборки.
-        /// </summary>
-        private const string BuildCommand = "dotnet build";
+        private readonly string _msBuildPath;
         /// <summary>
         /// Команд запуска консоли.
         /// </summary>
@@ -23,11 +21,15 @@ namespace NetCoreBuildIntegration.Builders
         /// Путь к файлу решения.
         /// </summary>
         public string SolutionFilePath { get; set; }
+        private VsVersionItem _selectedVsVersion;
 
-        public NetCoreBuilder()
+        public NetFrameworkBuilder(string msBuildPath, VsVersionItem vsVersion=null)
         {
+            // задаём путь к MSBuild.exe
+            this._msBuildPath = msBuildPath;
             // Включаем поддержку кодировки вывода консоли.
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            _selectedVsVersion = vsVersion;
         }
 
         /// <summary>
@@ -36,7 +38,14 @@ namespace NetCoreBuildIntegration.Builders
         /// <returns>Вывод сообщений компилятора.</returns>
         public string Build()
         {
-            Process builderProcess = PrepareBuilderProcess($"/c {BuildCommand} {SolutionFilePath} ");
+            Process builderProcess;
+            if ((_selectedVsVersion == null) || (_selectedVsVersion==SupportedVsVersions.DefaultVersion)) {
+                builderProcess = PrepareBuilderProcess($"/c \"{_msBuildPath}\" {SolutionFilePath}");
+            }
+            else
+            {
+                builderProcess = PrepareBuilderProcess($"/c \"{_msBuildPath}\" {SolutionFilePath} /p:VisualStudioVersion={_selectedVsVersion.Version}");
+            }
             var sb = new StringBuilder();
             builderProcess.Start();
             while (!builderProcess.StandardOutput.EndOfStream)
