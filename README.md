@@ -11,14 +11,13 @@ System requirements:
  - Windows 10;
  - Git 2.17.0 or higher;
  - Microsoft Visual Studio Build Tools 2019 or higher;
- - .NET Core 3.1 (to build the program itself).
+ - .NET Core 3.1 and .NET Framework (for MSBuild supporting) to build the program itself.
  
  ## Whats new
  
   - Supporting MSBuild and .NET Framework;
   - The ability to select the version of Visual Studio to build using MSBuild.
-  
- Also, starting from this version, the installer project is excluded from the source code. ClickOnce is now used instead.
+  - No more installation required .NET 5 on the computer to run the program (if it is installed from the installer ) .
  
  ## History
  
