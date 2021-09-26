@@ -17,6 +17,7 @@ System requirements:
  
   - Supporting MSBuild and .NET Framework;
   - The ability to select the version of Visual Studio to build using MSBuild.
+  - No more installation required .NET 5 on the computer to run the program (if it is installed from the installer ) .
  
  ## History
  

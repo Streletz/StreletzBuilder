@@ -36,7 +36,7 @@ namespace StreletzBuilder
             this.labelYears = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.labelVersion = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelBetaVersionTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelProgramName
@@ -98,21 +98,22 @@ namespace StreletzBuilder
             this.labelVersion.TabIndex = 5;
             this.labelVersion.Text = "Версия";
             // 
-            // label1
+            // labelBetaVersionTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 20);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Бета";
+            this.labelBetaVersionTitle.AutoSize = true;
+            this.labelBetaVersionTitle.Location = new System.Drawing.Point(15, 77);
+            this.labelBetaVersionTitle.Name = "labelBetaVersionTitle";
+            this.labelBetaVersionTitle.Size = new System.Drawing.Size(40, 20);
+            this.labelBetaVersionTitle.TabIndex = 6;
+            this.labelBetaVersionTitle.Text = "Бета";
+            this.labelBetaVersionTitle.Visible = false;
             // 
             // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(239, 280);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelBetaVersionTitle);
             this.Controls.Add(this.labelVersion);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.labelYears);
@@ -142,6 +143,6 @@ namespace StreletzBuilder
         private System.Windows.Forms.Label labelYears;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelVersion;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelBetaVersionTitle;
     }
 }
